@@ -1,41 +1,45 @@
 html {
-    font-size: 10px;
-    font-family: 'Open Sans', sans-serif;
-  }
-  
-  
-  h1 {
-    font-size: 60px;
-    text-align: center;
-  }
-  
-  p, li {
-    font-size: 16px;
-    line-height: 2;
-    letter-spacing: 1px;
-  }
-  
-  
-  html {
-    background-color: #00539F;
-  }
-  
-  body {
-    width: 600px;
-    margin: 0 auto;
-    background-color: #FF9500;
-    padding: 0 20px 20px 20px;
-    border: 5px solid black;
-  }
-  
-  h1 {
-    margin: 0;
-    padding: 20px 0;
-    color: #00539F;
-    text-shadow: 3px 3px 1px black;
-  }
-  
-  img {
-    display: block;
-    margin: 0 auto;
-  }
+  font-size: 16px;
+  font-family: 'Palatino', 'Times New Roman', Times, serif;
+  background-color: #2F4F4F; /* Dark slate gray, inspired by the misty background */
+}
+
+body {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #D2B48C; /* Tan, inspired by the earthy tones */
+  padding: 20px 40px;
+  border: 1px solid #4A4A4A;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  color: #3A5F0B; /* Dark green, inspired by the trees */
+  margin-bottom: 0.5em;
+}
+
+p, li {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+a {
+  color: #8B4513; /* Saddle brown, for a natural accent */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #4A4A4A;
+}
