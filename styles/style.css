@@ -43,3 +43,31 @@ img {
   height: auto;
   border: 1px solid #4A4A4A;
 }
+
+.header-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #4A4A4A;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* You might want to adjust the header styles to accommodate the image */
+header {
+  text-align: center;
+}
+
+/* Ensure the navigation stands out */
+nav {
+  margin-top: 20px;
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+nav li {
+  margin-bottom: 10px;
+}
