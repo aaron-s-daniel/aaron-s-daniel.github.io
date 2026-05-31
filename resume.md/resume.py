@@ -67,15 +67,38 @@ def make_html(md: str, prefix: str = "resume") -> str:
 
 def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
     """
-    Write html to prefix.pdf using WeasyPrint
+    Write html to prefix.pdf using headless Chrome.
     """
-    try:
-        from weasyprint import HTML
-        HTML(string=html).write_pdf(f'{prefix}.pdf')
-        logging.info(f"Wrote {prefix}.pdf")
-    except Exception as e:
-        logging.error(f"Error generating PDF: {e}")
-        raise
+    chrome_paths = [
+        chrome,
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        shutil.which("chromium-browser"),
+        shutil.which("google-chrome"),
+    ]
+    chrome_bin = next((p for p in chrome_paths if p and os.path.exists(p)), None)
+    if not chrome_bin:
+        raise FileNotFoundError("Chrome/Chromium not found. Pass --chrome-path.")
+
+    html_file = prefix + ".html"
+    pdf_file = prefix + ".pdf"
+    with open(html_file, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    subprocess.run(
+        [
+            chrome_bin,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-sandbox",
+            "--no-pdf-header-footer",
+            f"--print-to-pdf={pdf_file}",
+            html_file,
+        ],
+        check=True,
+        capture_output=True,
+    )
+    logging.info(f"Wrote {pdf_file}")
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -120,3 +143,6 @@ if __name__ == "__main__":
         with open(prefix + ".html", "w", encoding="utf-8") as htmlfp:
             htmlfp.write(html)
             logging.info(f"Wrote {htmlfp.name}")
+
+    if not args.no_pdf:
+        write_pdf(html, prefix=prefix)
